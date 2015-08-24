@@ -1,0 +1,42 @@
+
+
+<div class="app-container">
+	<img src="assets/images/logo-irreversible.svg" class="irreversible-logo">
+
+	<fieldset class="linea-actual">
+		<label>Linea ActuaL</label>
+		{{input type="text" value=view.currentLine }}	
+	</fieldset>
+
+	<fieldset class="total">
+		<label>
+			Total
+		</label>	
+		{{input type="text" value=view.avalLines.length }}
+	</fieldset>
+	
+	<fieldset class="magia">
+		<label>Automatico</label>
+		{{input type="checkbox" checked=view.automatic}}
+	</fieldset>
+
+	<fieldset>
+		{{#if view.automatic}}
+				Intervalo: {{input type="text" value=view.delayEntry}}
+		{{/if}}
+	</fieldset>
+
+	<div class="magia-container">
+	<input class="input-file scan-app-magia" type="file" id="file">
+	<a {{action 'process' target="view"}} class="scan-app-process">Procesar</a>
+		
+	</div>
+	
+	<div class="close-app">
+		<a {{action 'close'}} class="close-app">x</a>
+	</div>
+
+</div>
+
+<iframe src="http://www.juntaelectoral.gba.gov.ar/sistemas/epaos/login.php" frameborder="0" id="avales">
+</iframe>

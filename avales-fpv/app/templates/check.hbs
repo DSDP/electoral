@@ -1,0 +1,108 @@
+{{#link-to 'index' class="back-btn"}}{{fa-icon 'arrow-left'}}Volver{{/link-to}}
+
+{{#unless processing}}
+	<form class="upload-form" {{action "process" on="submit"}}>
+		<fieldset>
+			<input class="input-file" type="file" id="file">
+			<div class="confirm-btn">
+				<input class="input-submit" type="submit" value="Procesar">
+			</div>	
+			<label>
+				<p>Seleccione el archivo en formato CSV</p>
+				<small>
+					Separado por punto y coma ";"
+				</small>
+			</label>
+		</fieldset>
+	</form>
+{{else}}
+	<div class="loading">
+		<h2>{{fa-icon 'refresh' size=2 spin=true}}</h2>
+		<p>
+		Validando información.<br>
+		Por favor aguarde.
+		</p>
+	</div>
+{{/unless}}
+
+
+
+{{#if result}}
+	<div class="results">
+		<div class="upload-meta">
+			<p class="result-status">{{result.status}}</p>
+			<div class="result-data">
+				<p>
+				<h4>{{result.totalLines}}</h4>
+				<span>Total cargados</span>
+				</p>
+				<p>
+				<h4>{{result.okLines}}</h4>
+				<span>Correctos </span>
+				</p>
+				<p>
+				<h4>{{result.errors.length}}</h4>
+				<span>Incorrectos </span>
+				</p>
+			</div>
+			<div class="province-container">
+				<ul class="province-list">
+				{{#each result.provincePrecense as |province|}}
+					<li class="province-item">
+						<p>{{province.name}}</p>
+					</li>
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+		
+		
+
+		{{#if result.errors}}
+			<div class="error-container">
+				
+			
+				<table class="tables">
+				<thead>
+					<tr>
+						<th width="170">Num. de fila</th>
+						<th>Listado de errores</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each errors as |error|}}
+					<tr>
+						<td>
+							<span class="error-number">{{error.number}}</span>
+						</td>
+						<td>
+						{{#each error.fields as |field|}}
+							<span class="error-fields">{{field}}</span>
+						{{/each}}
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+				</table>
+
+				<div class="pagination">
+					{{#if hasPrevPage}}
+						<a class="page-prev" {{action 'prevPage'}}>Anterior página</a>
+					{{else}}
+						<a class="page-prev disabled">Anterior página</a>
+					{{/if}}
+					<div class="pagination-input">
+						{{input type="text" value=page}} / {{errorsPages}}
+					</div>
+					{{#if hasNextPage}}
+						<a class="page-next" {{action 'nextPage'}}>Siguiente página</a>
+					{{else}}
+						<a class="page-next disabled">Siguiente página</a>
+					{{/if}}					
+				</div>
+			</div>
+		{{/if}}
+	</div>
+{{/if}}
+
+

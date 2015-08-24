@@ -1,0 +1,117 @@
+{{#link-to 'index' class="back-btn"}}{{fa-icon 'arrow-left'}}Volver{{/link-to}}
+
+<nav >
+  <a {{action 'showList'}} {{bind-attr class="isShowList:active"}}>Listado</a>
+  <a {{action 'new'}} {{bind-attr class="isShowList::active"}}>Nuevo</a>
+
+  <div class="right">
+    <a {{action 'clearList'}}> {{fa-icon 'trash-o'}}Limpiar avales</a>
+    <a {{action 'exportList'}}> {{fa-icon 'table'}}Copiar datos</a>
+  </div>
+</nav>
+
+{{#if isShowList}}
+   <table class="tables">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombre y apellido</th>
+        <th>Dirección</th>
+        <th>Provincia</th>
+        <th>Localidad</th>
+        <th>Sexo</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+    {{#each avalList as |aval|}}
+      <tr>
+        <td>{{aval.documento}}</td>
+        <td>{{aval.nombre}} {{aval.apellido}}</td>
+        <td>{{aval.domicilio}}</td>
+        <td>{{aval.provincia}}</td>
+        <td>{{aval.localidad}}</td>
+        <td>{{aval.sexo}}</td>
+       </tr>
+    {{/each}}
+      
+    </tbody>
+
+    <div class="pagination">
+      {{#if hasPrevPage}}
+        <a class="page-prev" {{action 'prevPage'}}>Anterior</a>
+      {{else}}
+        <a class="page-prev disabled">Anterior</a>
+      {{/if}}
+      <div class="pagination-input">
+        {{input type="text" value=page}} / {{errorsPages}}
+      </div>
+      {{#if hasNextPage}}
+        <a class="page-next" {{action 'nextPage'}}>Siguiente</a>
+      {{else}}
+        <a class="page-next disabled">Siguiente</a>
+      {{/if}}         
+    </div>    
+  </table>
+ 
+        
+ 
+
+{{else}}
+  <form class="create" {{action "save" on="submit"}}>
+    <fieldset>
+      <label>
+        Numero de Documento
+        {{input type="text" value=aval.documento}}
+      </label>
+    </fieldset>
+    {{#if foundPeople}}
+    <fieldset>
+      <label>
+        Nombre
+        {{input type="text" value=aval.nombre}}
+      </label>
+    </fieldset>
+    <fieldset>
+      <label>
+        Apellido
+        {{input type="text" value=aval.apellido}}
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <label>
+        Sexo
+        {{view "select" content=sexos selection=aval.sexo}}
+      </label>
+    </fieldset>
+    
+    <fieldset>
+      <label>
+        Domicilio
+        {{input type="text" value=aval.domicilio}}
+      </label>
+    </fieldset>
+
+    
+    <fieldset>
+      <label>
+        Provincia
+        {{view "select" content=provinces selection=aval.provincia}}
+      </label>
+    </fieldset>  
+
+    <fieldset>
+      <label>
+        Localidad
+        {{input type="text" value=aval.localidad}}
+      </label>
+    </fieldset>  
+
+    <fieldset class="save-btn">
+      <input type="submit" value="Guardar">
+    </fieldset>
+    {{/if}}  
+  </form>
+{{/if}}
+

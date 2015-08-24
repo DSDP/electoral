@@ -1,0 +1,56 @@
+{
+  "name": "listas-fpv",
+  "version": "0.0.0",
+  "description": "Small description for listas-fpv goes here",
+  "private": true,
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "ember server",
+    "build": "ember build",
+    "test": "ember test"
+  },
+  "repository": "",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "broccoli-asset-rev": "^2.0.0",
+    "ember-cli": "0.2.0",
+    "ember-cli-app-version": "0.3.2",
+    "ember-cli-babel": "^4.0.0",
+    "ember-cli-content-security-policy": "0.3.0",
+    "ember-cli-dependency-checker": "0.0.8",
+    "ember-cli-font-awesome": "0.0.9",
+    "ember-cli-htmlbars": "0.7.4",
+    "ember-cli-ic-ajax": "0.1.1",
+    "ember-cli-inject-live-reload": "^1.3.0",
+    "ember-cli-node-webkit": "0.2.0",
+    "ember-cli-qunit": "0.3.9",
+    "ember-cli-sass": "4.0.0",
+    "ember-cli-uglify": "1.0.1",
+    "ember-data": "1.0.0-beta.15",
+    "ember-export-application-global": "^1.0.2",
+    "ember-localforage-adapter": "0.7.2",
+    "ivy-tabs": "1.1.0",
+    "node-webkit-fdialogs": "^0.2.7",
+    "nw": "0.12.2"
+  },
+  "dom_storage_quota": 5000,
+  "window": {
+    "icon": "app.png",
+    "winIco": "app.png",
+    "width": 400,
+    "toolbar": false,
+    "frame": false,
+    "height": 140
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "main": "dist/index.html"
+}
